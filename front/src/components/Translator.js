@@ -19,7 +19,6 @@ const Translator = ({ selectedLanguage, setSelectedLanguage }) => {
     function getFileExtension(language) {
         if (language === "python") return "py";
         if (language === "java") return "java";
-        if (language === "c") return "c";
         return "txt";
     }
 
@@ -42,9 +41,7 @@ const Translator = ({ selectedLanguage, setSelectedLanguage }) => {
             translatedCode = "# Python Code\nprint('Hello, world!')";
         } else if (selectedLanguage === "java") {
             translatedCode = "// Java Code\nSystem.out.println('Hello, world!');";
-        } else if (selectedLanguage === "c") {
-            translatedCode = "// C Code\nprintf('Hello, world!');";
-        }
+        } 
         setOutputCode(translatedCode);
     };
 
@@ -135,7 +132,6 @@ const Translator = ({ selectedLanguage, setSelectedLanguage }) => {
                         >
                             {selectedLanguage === "python" && <MenuItem value="py">.py</MenuItem>}
                             {selectedLanguage === "java" && <MenuItem value="java">.java</MenuItem>}
-                            {selectedLanguage === "c" && <MenuItem value="c">.c</MenuItem>}
                             <MenuItem value="txt">.txt</MenuItem>
                         </Select>
                     </FormControl>

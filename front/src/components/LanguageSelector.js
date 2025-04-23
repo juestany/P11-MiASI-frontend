@@ -44,13 +44,6 @@ const LanguageSelector = ({ selectedLanguage, setSelectedLanguage }) => {
                         Java
                     </Box>
                 </MenuItem>
-                {/* Opcja wyboru języka C */}
-                <MenuItem value="c">
-                    <Box display="flex" alignItems="center">
-                        <img src="/images/c.png" alt="C" style={{ width: 20, marginRight: 10 }} />
-                        C
-                    </Box>
-                </MenuItem>
             </Select>
         </FormControl>
     );
