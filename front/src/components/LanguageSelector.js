@@ -1,21 +1,29 @@
 import React from "react";
 import { FormControl, InputLabel, MenuItem, Select, Box } from "@mui/material";
 
-// Komponent LanguageSelector umożliwia wybór języka programowania
+/**
+ * LanguageSelector component allows the user to select the target programming language
+ * for pseudocode translation. It supports Python and Java options.
+ *
+ * Props:
+ * - selectedLanguage (string): currently selected language
+ * - setSelectedLanguage (function): function to update the selected language
+ */
 const LanguageSelector = ({ selectedLanguage, setSelectedLanguage }) => {
     return (
-        // Kontrolka formularza dla rozwijanego menu
+        // Wrapper for the dropdown list styled using MUI
         <FormControl fullWidth>
-            {/* Etykieta dla listy rozwijanej */}
+            {/* Dropdown label */}
             <InputLabel id="language-select-label" sx={{ color: "#003366" }}>
                 Wybierz język
             </InputLabel>
-            {/* Lista rozwijana Select */}
+
+            {/* Language dropdown menu */}
             <Select
                 labelId="language-select-label"
                 id="language-select"
-                value={selectedLanguage} // Aktualnie wybrany język
-                onChange={(e) => setSelectedLanguage(e.target.value)} // Aktualizacja wyboru języka
+                value={selectedLanguage} // current selected value
+                onChange={(e) => setSelectedLanguage(e.target.value)} // updates selected language
                 label="Wybierz język"
                 sx={{
                     backgroundColor: "#f0f0f0",
@@ -23,21 +31,22 @@ const LanguageSelector = ({ selectedLanguage, setSelectedLanguage }) => {
                     padding: "10px 15px",
                     color: "#000",
                     "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#003366", // Kolor obramowania
+                        borderColor: "#003366", // outline color
                     },
                     "& .MuiSelect-icon": {
-                        color: "#003366", // Kolor ikony strzałki
+                        color: "#003366", // dropdown icon color
                     },
                 }}
             >
-                {/* Opcja wyboru języka Python */}
+                {/* Python option */}
                 <MenuItem value="python">
                     <Box display="flex" alignItems="center">
                         <img src="/images/python.png" alt="Python" style={{ width: 20, marginRight: 10 }} />
                         Python
                     </Box>
                 </MenuItem>
-                {/* Opcja wyboru języka Java */}
+
+                {/* Java option */}
                 <MenuItem value="java">
                     <Box display="flex" alignItems="center">
                         <img src="/images/java.png" alt="Java" style={{ width: 20, marginRight: 10 }} />
