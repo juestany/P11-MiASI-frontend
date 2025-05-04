@@ -96,14 +96,40 @@ const Translator = ({ selectedLanguage, setSelectedLanguage }) => {
                 body: inputCode,
             });
 
-            if (!response.ok) throw new Error("Błąd serwera");
+            const responseText = await response.text();
 
-            const translatedCode = await response.text();
-            setOutputCode(translatedCode);
+            if (!response.ok) {
+                const errorMessage = responseText.includes("BŁĄD SKŁADNIOWY")
+                    ? "Niepoprawna struktura pseudokodu. Sprawdź składnię."
+                    : "Wystąpił błąd połączenia z serwerem";
+                throw new Error(errorMessage);
+            }
+
+            if (responseText.startsWith("Błąd")) {
+                setErrorMessage(responseText);
+                setOutputCode("");
+                return;
+            }
+
+            setOutputCode(responseText);
             setErrorMessage("");
+
         } catch (error) {
             console.error("Błąd:", error);
-            setErrorMessage("Wystąpił błąd podczas tłumaczenia.");
+
+            const friendlyMessages = {
+                "Cannot invoke.*tree is null": "Niepoprawna składnia pseudokodu",
+                "BŁĄD SKŁADNIOWY": "Niepoprawna struktura kodu źródłowego",
+                "server": "Problem z połączeniem z serwerem",
+                "default": "Wystąpił błąd podczas tłumaczenia"
+            };
+
+            const errorKey = Object.keys(friendlyMessages).find(key =>
+                new RegExp(key).test(error.message)
+            );
+
+            setErrorMessage(friendlyMessages[errorKey || "default"]);
+            setOutputCode("");
         }
     };
 
