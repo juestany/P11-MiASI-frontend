@@ -239,7 +239,15 @@ const Translator = ({ selectedLanguage, setSelectedLanguage }) => {
                             }}
                             elevation={3}
                         >
-                            <pre style={{ margin: 0 }}>{outputCode}</pre>
+                            <pre
+                                style={{
+                                    margin: 0,
+                                    whiteSpace: "pre-wrap",
+                                    fontFamily: "Courier New, monospace",
+                                    tabSize: 4,
+                                }}
+                            >{outputCode}</pre>
+
                         </Paper>
                         <Tooltip title="Skopiuj kod">
                             <Button

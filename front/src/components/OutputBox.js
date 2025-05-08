@@ -28,9 +28,17 @@ const OutputBox = ({ outputCode }) => {
                 elevation={3}
             >
                 {/* Inner box with background for the code content */}
-                <Box sx={{ backgroundColor: "#f0f0f0", p: 2, borderRadius: 1 }}>
+                <Box sx={{backgroundColor: "#f0f0f0", p: 2, borderRadius: 1}}>
                     {/* Render the code with preserved spacing and indentation */}
-                    <pre style={{ margin: 0 }}>{outputCode}</pre>
+                    <pre style={{backgroundColor: "#f0f0f0"}}>
+  {outputCode.split("\n").map((line, i) => (
+      <div key={i}>
+          <span style={{color: "gray"}}>{line.replace(/ /g, "·")}</span>
+      </div>
+  ))}
+</pre>
+
+
                 </Box>
             </Paper>
         </Box>
